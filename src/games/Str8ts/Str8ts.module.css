@@ -1,0 +1,274 @@
+.WordleGame {
+    justify-self: center;
+    width: fit-content;
+    padding: 15vh min(4lvh, 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+.informationContainer {
+    height: 60px;
+    text-align: center;
+}
+
+.gameContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.gameHUD, .machineHUD {
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameHUD *, .machineHUD * {
+    font-family: "Cascadia Code", monospace;
+    font-size:  0.8rem;
+    background-color: #424242;
+    color: white;
+    border-radius: 5px;
+    padding: 0 8px;
+    border: none;
+    height: 32px;
+    align-content: center;
+}
+
+/*#button {*/
+/*    border: 2px solid #1F57E5;*/
+/*    background-color: #0A0A0A;*/
+/*    color: #5781ec;*/
+/*}*/
+#button {
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+
+}
+#button::after {
+    content: "";
+    left: 0;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+    background-image: linear-gradient(to right, #021019, #1c63ec);
+    animation: rotate 4s linear infinite;
+    transition: all 0.5s ease-in-out;
+    z-index: -2;
+}
+@keyframes rotate {
+    from { transform: rotate(0deg) scale(2)}
+    to { transform: rotate(360deg) scale(2)}
+}
+
+#button::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: #0A0A0A;
+    border-radius: 3px;
+    z-index: -1;
+}
+#button:hover {
+    transform: scale(1.025);
+}
+
+.game {
+    display: grid;
+    justify-self: center;
+    grid-template-columns: 1fr 1fr;
+    transition: grid-template-columns 0.2s ease-in-out;
+    grid-column-gap: 32px;
+}
+
+.game.hidden {
+    grid-template-columns: 1fr 0fr;
+}
+
+.game > * {
+    overflow: hidden;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(9, auto);
+    grid-template-rows: repeat(9, auto);
+    gap: 2px;
+    justify-items: center;
+    align-items: center;
+}
+
+.gameControls {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+
+.controlRow {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 4px
+}
+
+.key {
+    font-family: "Cascadia Code", monospace;
+    font-size:  0.8rem;
+    width: 40px;
+    height: 40px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    transition: all 150ms ease-in-out;
+}
+
+.candidKey {
+    font-size: 0.6rem;
+}
+
+.machineContainer {
+    display: flex;
+    /*justify-content: space-between;*/
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.machineContainer.hidden {
+    display: none;
+}
+
+.MachineBoard {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    align-items: center;
+}
+
+.MachineBoard > .board {
+    width: fit-content;
+}
+
+.cube {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    transform-style: preserve-3d;
+    /* This single line makes the flying animation smooth! */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 3. The 3 Faces */
+.face {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+/* We push the top face UP on the Z-axis */
+.top {
+    background-color: #ffffff;
+    /*transform: translateZ(50px);*/
+    border: 1px solid #e0e0e0;
+}
+
+/* We fold the front face DOWN from the bottom edge */
+.front {
+    background-color: #cccccc; /* Shadow */
+    transform-origin: bottom;
+    transform: rotateX(-90deg) translateY(50px);
+}
+
+/* We fold the right face DOWN from the right edge */
+.right {
+    background-color: #999999; /* Deep Shadow */
+    transform-origin: right;
+    transform: rotateY(90deg) translateX(50px);
+}
+
+
+
+.controlRow:nth-of-type(2) {
+    margin-left: 20px;
+}
+.controlRow:nth-of-type(3) {
+    margin-left: 40px;
+}
+
+#board.over .cell.empty {
+    background-color: #FFFFFF;
+}
+
+.cell {
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 2px;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 150ms ease-in-out;
+    user-select: none;
+}
+
+.cellCandid {
+    justify-self: center;
+    align-self:  center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    font-size: 0.5rem;
+}
+.cell.initial {
+    background-color: rgb(212, 174, 123);
+    color: #000000;
+}
+.cell.blocked {
+    background-color: rgb(39, 39, 39);
+    color: #ffffff;
+}
+
+.cellActive {
+    background-color: rgb(244, 213, 178);
+}
+
+@keyframes myAnimation {
+    0%   {transform: scaleY(1)}
+    25%  {transform: scaleY(0)}
+    50%  {transform: scaleY(1)}
+    75%  {transform: scaleY(0)}
+    100% {transform: scaleY(1)}
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}

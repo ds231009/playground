@@ -1,0 +1,15 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 32px;
+  padding-bottom: 96px;
+}
+
+.stage {
+  min-height: 60vh;
+}
+
+.back {
+  align-self: flex-start;
+}

@@ -1,0 +1,86 @@
+/* Design tokens. Mirrors the "Tokens" variable collection in Figma. */
+:root {
+  /* color */
+  --color-bg: #f6f5f2;
+  --color-surface: #ffffff;
+  --color-surface-2: #eceae4;
+  --color-border: #d9d6ce;
+  --color-text: #17171a;
+  --color-text-muted: #6f6e6a;
+  --color-ink: #17171a;
+  --color-accent: #f2be5f;
+  --color-on-accent: #17171a;
+  --color-accent-soft: #fbebc9;
+  /* Richer amber for things people should click (primary buttons, nav underline, caret) */
+  --color-accent-strong: #ffb020;
+  --color-coral: #e8674d;
+  --color-coral-soft: #fbddd5;
+  /* deeper coral for large blocks with white text on them (featured): 4.7:1 against white */
+  --color-coral-block: #c9472e;
+  --color-teal: #3faf9c;
+  --color-teal-soft: #cfeee7;
+  --color-lilac: #8f7cf0;
+  --color-lilac-soft: #e2dcfb;
+  --color-indigo: #3c3d8f;
+  /* text on the soft tints (covers, soft tags) and on the coral/ink blocks */
+  --color-on-soft: #17171a;
+  --color-on-block: #ffffff;
+  color-scheme: light;
+
+  /* spacing */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  /* Julian removed most rounding (2026-10-12): cards, covers, featured, photos */
+  --radius-card: 4px;
+  --radius-cover: 2px;
+  --radius-photo: 2px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 160ms;
+  --dur-base: 400ms;
+  --dur-slow: 700ms;
+
+  /* type */
+  --font-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-script: 'Freehand', cursive;
+  /* mono is only used by the code face of the wordmark loop (Header) */
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Menlo, monospace;
+
+  --page-max: 1440px;
+  --page-gutter: 64px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --page-gutter: 24px;
+  }
+}
+
+/* Dark theme: set by lib/theme.ts (and the pre-paint script in index.html). Accents stay, neutrals and tints flip. */
+:root[data-theme='dark'] {
+  --color-bg: #141416;
+  --color-surface: #1d1d21;
+  --color-surface-2: #28282e;
+  --color-border: #35353c;
+  --color-text: #f1efe9;
+  --color-text-muted: #9d9b95;
+  --color-accent-soft: #3d3118;
+  --color-coral-soft: #4a2820;
+  --color-teal-soft: #163a34;
+  --color-lilac-soft: #2d2752;
+  --color-on-soft: #f1efe9;
+  color-scheme: dark;
+}
